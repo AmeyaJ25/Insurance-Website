@@ -10,6 +10,8 @@ input[type="radio"] + label{
   float: left;
   border-radius: 0;
 }
+
+
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
@@ -95,9 +97,8 @@ input[type="radio"] + label{
       // }
      // PastNumberOfClaims={'none':0, '1':1, '2 to 4':2, 'more than 4':5}
 </script>
-<div class="outer">
-<div class="container1" style="background-color: #22262a;
-    margin-top: 2%;">
+<div class="outer" style="background-image: linear-gradient(to right bottom, #1652f8, #006be5, #00a3d5, #004dae, #11076e);height: 100vh;" >
+<div class="container1" style="margin-top: 2%;">
   <form method="POST" action="/adduserdb" name="fr" id="rev_form" onsubmit="return abc(this);">
     <div class="row">
       <h4 style="    padding-bottom: 5%; text-align: center;">Add New User</h4>
@@ -131,10 +132,10 @@ input[type="radio"] + label{
         <label for="gender-female">Female</label>
       </div>
     </div>
-      <div class="input-group input-group-icon">
+      <!-- <div class="input-group input-group-icon">
       <input type="checkbox" class="form-check-input" id="Check1">
           <label class="form-check-label" for="Check1">Check me out</label>
-        </div> 
+        </div>  -->
       <input type="submit" name="submit" class="btn btn-primary" style="display: block;margin: auto; width: auto;" value="Submit">
 
     </div>

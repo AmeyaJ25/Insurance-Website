@@ -4514,7 +4514,7 @@ textarea.form-control-lg {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: #3d4044;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
@@ -11783,7 +11783,7 @@ section#contact form#contactForm :-ms-input-placeholder {
 #mainNav .navbar-nav .nav-item .nav-link {
   font-family: 'Baloo Bhai 2', cursive;
   font-size: 1.2rem;
-  color: aqua;
+  color: #00B8FC;
   font-weight: bold;
   letter-spacing: 0.0625em;
 }

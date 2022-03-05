@@ -43,5 +43,7 @@
 .card-body {
     text-align: center;
     font-size: 35px !important;
-    
+    background-color: #3d4044;
+    color: rgb(255, 255, 255);
+    box-shadow: 10px 10px 10px darkblue;
 }

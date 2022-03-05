@@ -139,7 +139,8 @@ def customer_login():
         q=User.query.filter_by(email=email).first()
         if(q and q.passwd==password):
             session["username"]=email
-            return render_template("cussuc.html",usrname=session["username"])
+            pass1=q.passwd
+            return render_template("cussuc.html",usrname=session["username"],pass1=pass1)
         else:
             flash("*Incorrect Email or Password")
             return redirect(url_for("customer_login"))
@@ -451,7 +452,7 @@ def updatepol():
 def cussuccess():
     if not session.get("username"):
       return render_template("illegal.html") 
-    return render_template("cussuc.html")
+    return render_template("cussuc.html",)
 #route for apply claim
 @app.route("/applyclaim")
 def aclaim():
@@ -633,6 +634,22 @@ def client_policy():
     email=session["username"]
     q=Policy.query.filter_by(email=email).all()
     return render_template("clpolicy.html",data=q)
+
+@app.route("/newpass",methods=['POST','GET'])
+def newpass():
+    if (request.method == 'POST'):
+        email=session.get("username")
+        pass1=request.form["npass"]
+        q=User.query.filter_by(email=email).first()
+        q.passwd=pass1
+        db.session.add(q)
+        db.session.commit()
+        flash("Your password change successfully")
+        return redirect(url_for("cussuccess"))
+    else:
+        return render_template("illegal.html")
+
+        
 
 if __name__=="__main__":
     app.run(debug=True)
