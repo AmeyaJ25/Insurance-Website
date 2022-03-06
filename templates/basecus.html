@@ -13,7 +13,7 @@
     <link href="{{url_for('static',filename='newhome.css')}}" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
     <script>
-        function abc() {
+        function abcabc() {
                 let op = document.getElementById('curpass').value;
                 let np = document.getElementById('npass').value;
                 let np1 = document.getElementById('n1pass').value;
@@ -107,9 +107,15 @@
                                         data-bs-target="#deleteuser">change password</a></li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="/logout/abc" class="btn btn-success" style="text-decoration: none;">Logout</a>
+                            
+                                <li class="nav-item">
+                                <a class="nav-link" href="/logout/abc"  class="btn btn-success" style="text-decoration: none;">Logout</a>
                             </li>
+                            
+                            <!--- 
+                            <li class="nav-item">
+                                <a class="nav-link" href="/logout/ADMIN" class="btn btn-success" style="text-decoration: none;">Logout</a>
+                            </li> --->
                         </ul>
                     </ul>
                 </div>
@@ -123,7 +129,7 @@
                   <h5 class="modal-title" id="exampleModalLabel">Remove User</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="/newpass" method="post" name="chp" onsubmit="return abc(this);">
+                <form action="/newpass" method="post" name="chp" onsubmit="return abcabc(this);">
                     <div class="modal-body">
     
                         <div class="input-group mb-3">

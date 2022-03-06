@@ -4,9 +4,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Baloo Bhai 2', "Poppins", sans-serif, cursive;
-  color: aqua;
+  font-family: 'Baloo Bhai 2',"Poppins", sans-serif, cursive;
+  color: #00B8FC;
 }
+
 body{
   min-height: 100vh;
   width: 100%;
@@ -72,7 +73,7 @@ body{
 .content .right-side .topic-text{
   font-size: 23px;
   font-weight: 600;
-  color: aqua;
+  color: #00B8FC;
 }
 .right-side .input-box{
   height: 50px;

@@ -139,14 +139,28 @@ def customer_login():
         q=User.query.filter_by(email=email).first()
         if(q and q.passwd==password):
             session["username"]=email
-            pass1=q.passwd
-            return render_template("cussuc.html",usrname=session["username"],pass1=pass1)
+            return redirect(url_for("cussuccess"))
         else:
             flash("*Incorrect Email or Password")
             return redirect(url_for("customer_login"))
     else:
         return render_template("customer_login.html")
 ############################
+
+#route for customer homepage
+
+@app.route("/cussuc")
+def cussuccess():
+    if not session.get("username"):
+      return render_template("illegal.html")
+    usrname=session["username"]
+    q=User.query.filter_by(email=usrname).first()
+    pass1=q.passwd
+    q=User.query.filter_by(email=usrname).first()
+    carno=Policy.query.filter_by(email=usrname).all()
+    carno=len(carno)
+    return render_template("cussuc.html",usrname=usrname,pass1=pass1,info=q,carno=carno,pclaim=q.pastnoofclaim)
+####################
 #Customer reset password
 @app.route("/reset",methods=["POST","GET"])
 def reset():
@@ -266,7 +280,7 @@ def del_contact(email):
     data1=Contact.query.filter_by(email=email).first()
     db.session.delete(data1)
     db.session.commit()
-    flash("User deleted successfully")
+    # flash("User deleted successfully")
     return redirect(url_for("fetch_contact"))
 # Logout session for admin and User
 
@@ -445,14 +459,7 @@ def updatepol():
         return redirect(url_for("admin_home"))
     else:
         return render_template("updatepol.html")
-####################
-#route for customer homepage
 
-@app.route("/cussuc")
-def cussuccess():
-    if not session.get("username"):
-      return render_template("illegal.html") 
-    return render_template("cussuc.html",)
 #route for apply claim
 @app.route("/applyclaim")
 def aclaim():
@@ -598,7 +605,7 @@ def addclaim():
             # for i in c:
             #     print(type(i))
             pre.append(c)
-            model=pickle.load(open("Finalmodel.sav", 'rb'))#("projectXGboost.sav", 'rb'))
+            model=pickle.load(open("Finalmodelrandom.sav", 'rb'))#("projectXGboost.sav", 'rb'))
             op=model.predict(pre)
             if(op==[1]):
                 prediction="fraud"
@@ -608,7 +615,7 @@ def addclaim():
             db.session.add(q1)
             db.session.commit()
             flash("Claim added successfully")
-            return render_template("cussuc.html")
+            return redirect(url_for("cussuccess"))
         else:
             flash("Given Car Number is not registered with your Vehicle poilcy")
             today=date.today()
@@ -617,7 +624,7 @@ def addclaim():
     else:
         if not session.get(session['username']):
             return render_template("illegal.html")
-        return render_template("cussuc.html")
+        return redirect(url_for("cussuccess"))
 ####################
 #route for admin policy view
 #from datetime import datetime 
@@ -649,6 +656,15 @@ def newpass():
     else:
         return render_template("illegal.html")
 
+@app.route("/info/<email>")
+def info_cus(email):
+    q=User.query.filter_by(email=email).first()
+    if(q):
+        carno=Policy.query.filter_by(email=email).all()
+        carno=len(carno)
+        return render_template("infocustomer.html",info=q,carno=carno)
+    else:
+        return"no entry"
         
 
 if __name__=="__main__":
